@@ -6,9 +6,9 @@ FROM partlab/ubuntu-golang
 
 ADD . /opt/go/src/myapp
 
-RUN go get github.com/milalexson/golang-webserver-postgres
-RUN go install myapp
+RUN go get github.com/milalexson/golang-webserver-postgres/main
+RUN go install main
 
-ENTRYPOINT /opt/go/bin/myapp
+ENTRYPOINT /opt/go/bin/main
 
 EXPOSE 8080
