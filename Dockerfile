@@ -2,10 +2,13 @@
 # Start script pulls code from S3 and deploys.
 # Script relies on environment variables being passed to the docker image on creation.
 
-FROM golang:1.6-onbuild
-RUN apt-get update && apt-get install -y \
-        wget \
-	postgresql-client \
+FROM partlab/ubuntu-golang
 
-ADD start.sh /root
-RUN chmod 755 /root/start.sh
+ADD . /opt/go/src/myapp
+
+RUN go get github.com/milalexson/golang-webserver-postgres
+RUN go install myapp
+
+ENTRYPOINT /opt/go/bin/myapp
+
+EXPOSE 8080
