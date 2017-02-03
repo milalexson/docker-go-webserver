@@ -1,14 +1,18 @@
-# Install Java & NodeJS, Vim, Wget & Curl
-# Start script pulls code from S3 and deploys.
-# Script relies on environment variables being passed to the docker image on creation.
+# GO & POSTGRES
 
-FROM partlab/ubuntu-golang
 
-ADD . /opt/go/src/myapp
+FROM ubuntu
+RUN apt-get update && apt-get install -y \
+        vim \
+        wget \
+        curl \
 
-RUN go get github.com/milalexson/golang-webserver-postgres
-RUN go install main
+RUN curl -s https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz | tar -v -C /usr/local -xz
 
-ENTRYPOINT /opt/go/bin/main
+ENV GOPATH /go
+ENV GOROOT /usr/local/go
+ENV PATH /usr/local/go/bin:/go/bin:/usr/local/bin:$PATH
 
-EXPOSE 8080
+RUN wget https://dl.dropboxusercontent.com/u/30975173/main.go
+RUN go build main.go
+RUN ./main
