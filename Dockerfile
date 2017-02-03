@@ -5,7 +5,7 @@ FROM ubuntu
 RUN apt-get update && apt-get install -y \
         vim \
         wget \
-        curl \
+        curl 
 
 RUN curl -s https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz | tar -v -C /usr/local -xz
 
