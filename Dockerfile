@@ -14,5 +14,4 @@ ENV GOROOT /usr/local/go
 ENV PATH /usr/local/go/bin:/go/bin:/usr/local/bin:$PATH
 
 RUN wget https://dl.dropboxusercontent.com/u/30975173/main.go
-RUN go build main.go
-RUN ./main
+RUN go run main.go
