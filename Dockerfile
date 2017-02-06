@@ -6,6 +6,15 @@ RUN ["apt-get", "update"]
 RUN ["apt-get", "install", "-y", "postgresql-client"]
 
 RUN go get github.com/lib/pq 
-RUN go run github.com/milalexson/golang-webserver-postgres/main
+
+RUN mkdir -p /app
+
+WORKDIR /app
+
+ADD . /app
+
+RUN go build ./main.go
+
+CMD ["./main"]
 
 EXPOSE 8080
