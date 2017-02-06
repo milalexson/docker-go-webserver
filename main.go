@@ -5,12 +5,13 @@ import (
 	"net/http"
 	"log"
 	"strconv"
-	_ "github.com/lib/pq"
-	"database/sql"
+	//_ "github.com/lib/pq"
+	//"database/sql"
 	//"os"
 )
 
 
+/*
 const (  
   host     = "vhapoc.c6d1wvruqzfl.ap-southeast-2.rds.amazonaws.com"
   port     = 5432
@@ -18,6 +19,8 @@ const (
   password = "apc3raPoC"
   dbname   = "postgres"
 )
+
+*/
 
 /*
 const (  
@@ -39,6 +42,7 @@ var password string = os.Getenv("DB_PASSWORD")
 
 
 var count int64=1
+/*
 var cdrs string = "<span></span>"
 var MSIDN int64
 var IMSI int64
@@ -51,7 +55,7 @@ var DURATION int64
 var TIME string
 var DATE string
 
-
+*/
 
 
 
@@ -62,6 +66,7 @@ func Log(handler http.Handler) http.Handler {
     })
 }
 
+/*
 func getCDRS(){
 	
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
@@ -116,6 +121,8 @@ func getCDRS(){
 
 }
 
+*/
+
 func main() {
 
 	//http.Handle("/", http.FileServer(http.Dir("./docroot")))
@@ -124,7 +131,7 @@ func main() {
    // http.HandleFunc("/count", handler)
    http.HandleFunc("/", handler)
 
-	getCDRS()
+	//getCDRS()
 	
 	error := http.ListenAndServe(":8080", Log(http.DefaultServeMux))
         if error != nil {
@@ -135,12 +142,12 @@ func main() {
 
 func handler(response http.ResponseWriter, request *http.Request){
 	html :=string("<!DOCTYPE html><html><body style='background-color:#fefefe;'><p /><center><span style='font-size:7vh;  color:#888888;'>CDRS</span></center><center>")
-    //html +=strconv.FormatInt(count,10)
-    html +=cdrs
+    html +=strconv.FormatInt(count,10)
+   // html +=cdrs
     html +="</center></body></html>"
     fmt.Fprintf(response, html) 
     count++
-    getCDRS()
+   // getCDRS()
  
 }
 
