@@ -19,7 +19,7 @@ const (
   password = "apc3raPoC"
   dbname   = "postgres"
 )
-*/
+
 
 
 /*
@@ -70,6 +70,7 @@ func Log(handler http.Handler) http.Handler {
 
 func getCDRS(){
 	psqlURI := os.Getenv("POSTGRESSERVICE_URI") 
+	fmt.Println("URI->",psqlURI)
 	/*
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 	    "password=%s dbname=%s sslmode=disable",
