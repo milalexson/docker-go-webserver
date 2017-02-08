@@ -141,13 +141,13 @@ func main() {
 }
 
 func handler(response http.ResponseWriter, request *http.Request){
-	html :=string("<!DOCTYPE html><html><body style='background-color:#fefefe;'><p /><center><span style='font-size:7vh;  color:#888888;'>CDRS</span></center><center>")
+    getCDRS()
+    html :=string("<!DOCTYPE html><html><body style='background-color:#fefefe;'><p /><center><span style='font-size:7vh;  color:#888888;'>CDRS</span></center><center>")
     //html +=strconv.FormatInt(count,10)
     html +=cdrs
     html +="</center></body></html>"
     fmt.Fprintf(response, html) 
     count++
-    getCDRS()
  
 }
 
