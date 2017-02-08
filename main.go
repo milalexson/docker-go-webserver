@@ -7,11 +7,11 @@ import (
 	"strconv"
 	_ "github.com/lib/pq"
 	"database/sql"
-	//"os"
+	"os"
 )
 
 
-
+/*
 const (  
   host     = "vhapoc.c6d1wvruqzfl.ap-southeast-2.rds.amazonaws.com"
   port     = 5432
@@ -19,7 +19,7 @@ const (
   password = "apc3raPoC"
   dbname   = "postgres"
 )
-
+*/
 
 
 /*
@@ -28,6 +28,7 @@ const (
   dbname   = "postgres"
 )
 
+POSTGRESSERVICE_URI=postgres://b9vtkmr7n4ie1shu:YFjqd8ARanpDogCz@vhapoc.c6d1wvruqzfl.ap-southeast-2.rds.amazonaws.com:5432/3601996f768a494890dfbe64ed07c70d
 
 set DB_HOST=vhapoc.c6d1wvruqzfl.ap-southeast-2.rds.amazonaws.com
 set DB_USER=apcera
@@ -68,11 +69,13 @@ func Log(handler http.Handler) http.Handler {
 
 
 func getCDRS(){
-	
+	psqlURI := os.Getenv("POSTGRESSERVICE_URI") 
+	/*
 	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s "+
 	    "password=%s dbname=%s sslmode=disable",
 	    host, port, user, password, dbname)
-	  db, err := sql.Open("postgres", psqlInfo)
+	    */
+	  db, err := sql.Open("postgres", psqlURI)
 	  if err != nil {
 	    panic(err)
 	  }
